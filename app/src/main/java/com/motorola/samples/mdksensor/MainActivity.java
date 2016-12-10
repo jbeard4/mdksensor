@@ -81,8 +81,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Line chart to draw temperature values
      */
     private static int count;
-    private static float maxTop = 80f;
-    private static float minTop = 70f;
+    private static float maxTop = 600f;
+    private static float minTop = 90f;
     private LineChartView chart;
     private Viewport viewPort;
 
@@ -140,8 +140,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     }
 
                     if (personality.getModDevice() == null
-                            || personality.getModDevice().getVendorId() != Constants.VID_MDK
-                            || personality.getModDevice().getProductId() != Constants.PID_TEMPERATURE) {
+                            || personality.getModDevice().getVendorId() != Constants.VID_DEVELOPER
+                            || personality.getModDevice().getProductId() != Constants.PID_DEVELOPER) {
                         Toast.makeText(MainActivity.this, getString(R.string.sensor_not_available),
                                 Toast.LENGTH_SHORT).show();
                         buttonView.setChecked(false);
@@ -153,8 +153,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     if (spinner != null) {
                         if (!isChecked && personality != null
                                 && personality.getModDevice() != null
-                                && personality.getModDevice().getVendorId() == Constants.VID_MDK
-                                && personality.getModDevice().getProductId() == Constants.PID_TEMPERATURE) {
+                                && personality.getModDevice().getVendorId() == Constants.VID_DEVELOPER
+                                && personality.getModDevice().getProductId() == Constants.PID_DEVELOPER) {
                             spinner.setEnabled(true);
                         } else {
                             spinner.setEnabled(false);

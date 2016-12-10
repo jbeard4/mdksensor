@@ -51,11 +51,11 @@ public class Constants {
     public static final int INVALID_ID = -1;
     public static final int MAX_SAMPLING_SUM = 15;
 
-    public static final int VID_MDK = 0x00000312;
+    public static final int VID_MDK = 0x00000042;
     public static final int VID_DEVELOPER = 0x00000042;
 
     public static final int PID_DEVELOPER = 0x00000001;
-    public static final int PID_TEMPERATURE = 0x00010503;
+    public static final int PID_TEMPERATURE = 0x00000001;
 
     /**
      * Command  is [cmd ID(1 byte)] [size of payload(1byte)] [payload]
