@@ -42,6 +42,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Button;
@@ -225,10 +226,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             textView.setOnClickListener(this);
         }
 
-        Button button = (Button)findViewById(R.id.status_clear_history);
-        if (button != null) {
-            button.setOnClickListener(this);
-        }
     }
 
     @Override
@@ -338,15 +335,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.mod_external_buy_mdk:
                 /** The Buy Mods link is clicked */
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_MOD_STORE)));
-                break;
-            case R.id.status_clear_history:
-                /** The Clear History button is clicked */
-                count = 0;
-                Line line = chart.getLineChartData().getLines().get(0);
-                if (null != line) {
-                    line.getValues().clear();
-                    chart.animationDataUpdate(1);
-                }
                 break;
             default:
                 Log.i(Constants.TAG, "Alert: Main action not handle.");
@@ -480,10 +468,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
          * command challenge, the button will be enabled . Refer to handler
          * of Constants.TEMP_RAW_COMMAND_CHLGE_RESP in parseResponse().
          */
-        Button bClear = (Button) findViewById(R.id.status_clear_history);
-        if (bClear != null ) {
-            bClear.setEnabled(false);
-        }
     }
 
     /** Check current mod whether in developer mode */
@@ -616,9 +600,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             /** The temperature */
             double temp = data / 100;
-            Log.e("temp", Double.toString(temp));
             Log.e("data", Integer.toString(data));
 
+            Switch switcher = (Switch) findViewById(R.id.sensor_switch);
+            if(!switcher.isChecked()) return;
+
+            maybeRenderPuppy(temp);
             /** Draw temperature value to line chart */
             count++;
             Line line = chart.getLineChartData().getLines().get(0);
@@ -706,10 +693,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 spinner.setEnabled(challengePassed);
             }
 
-            Button bClear = (Button) findViewById(R.id.status_clear_history);
-            if (bClear != null ) {
-                bClear.setEnabled(challengePassed);
-            }
+        }
+    }
+
+    private void maybeRenderPuppy(double temp){
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        if(temp > 30 && temp < 40){
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            imageView.setVisibility(View.INVISIBLE);
         }
     }
 }

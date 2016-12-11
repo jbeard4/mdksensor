@@ -41,14 +41,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/icon_margin"
-            android:visibility="gone"
-            android:src="@drawable/ic_mod_sensor" />
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,22 +104,17 @@
                 android:layout_gravity="left"
                 android:foregroundGravity="left" />
 
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:id="@+id/status_clear_history"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/widgets_vertical_margin"
-                android:background="@drawable/button_background"
-                android:minHeight="@dimen/button_min_height"
-                android:paddingLeft="@dimen/widgets_horizontal_margin"
-                android:paddingRight="@dimen/widgets_horizontal_margin"
-                android:text="@string/clear_history"
-                android:enabled="false"
-                android:textColor="@drawable/button_text_color" />
 
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="228dp"
+            android:padding="@dimen/icon_margin"
+            android:src="@drawable/puppygram"
+            android:visibility="invisible"
+            android:id="@+id/imageView" />
 
     </LinearLayout>
+
 
 </android.support.v7.widget.CardView>
