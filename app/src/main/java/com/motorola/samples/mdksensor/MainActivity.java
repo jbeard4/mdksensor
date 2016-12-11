@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,6 +87,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static float minTop = 0f;
     private LineChartView chart;
     private Viewport viewPort;
+    private ArrayList<Double> buffer = new ArrayList<Double>();
+    private final int maxBufferSize = 30;
+    private boolean isPuppyVisible = false;
+    private final double threshold = 1.0f;
 
     /** Handler for events from mod device */
     private Handler handler = new Handler() {
@@ -134,8 +139,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (null == personality || null == personality.getModDevice()) {
-                        Toast.makeText(MainActivity.this, getString(R.string.sensor_not_available),
-                                Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, getString(R.string.sensor_not_available),
+                        //        Toast.LENGTH_SHORT).show();
                         buttonView.setChecked(false);
                         return;
                     }
@@ -605,6 +610,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Switch switcher = (Switch) findViewById(R.id.sensor_switch);
             if(!switcher.isChecked()) return;
 
+            if(buffer.size() == maxBufferSize){
+                buffer.remove(0);
+            }
+
+            buffer.add(temp);
             maybeRenderPuppy(temp);
             /** Draw temperature value to line chart */
             count++;
@@ -697,11 +707,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void maybeRenderPuppy(double temp){
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        if(temp > 30 && temp < 40){
-            imageView.setVisibility(View.VISIBLE);
-        } else {
-            imageView.setVisibility(View.INVISIBLE);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        double average = computeAverage();
+        Log.e("average",Double.toString(average));
+        Log.e("temp",Double.toString(temp));
+        if(temp > (average + threshold)){
+
+            if(!isPuppyVisible ) {
+                isPuppyVisible = true;
+                imageView.setVisibility(View.VISIBLE);
+                Toast mytoast = Toast.makeText(MainActivity.this, "Relax! Here's a puppy...", Toast.LENGTH_SHORT);
+                mytoast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 0);
+                mytoast.show();
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                isPuppyVisible = false;
+                                imageView.setVisibility(View.INVISIBLE);
+                            }
+                        },
+                        2000);
+            }
         }
+    }
+
+    private double computeAverage(){
+        double sum = 0;
+        for(Double d : buffer) {
+            sum += d;
+        }
+        return sum / buffer.size();
     }
 }

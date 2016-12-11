@@ -123,7 +123,7 @@
     <!-- description: [Sample value catching interval caption] -->
     <string name="sensor_interval">Interval</string>
     <!-- description: [Sample values showing on UI caption] -->
-    <string name="x_axis_name">15 recent sampling</string>
+    <string name="x_axis_name"></string>
     <!-- description: [Y axis label showing on UI caption] -->
     <string name="y_axis_name">Stress</string>
     <!-- description: [Clear history button caption] -->
