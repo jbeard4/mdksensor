@@ -717,7 +717,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 isPuppyVisible = true;
                 imageView.setVisibility(View.VISIBLE);
                 Toast mytoast = Toast.makeText(MainActivity.this, "Relax! Here's a puppy...", Toast.LENGTH_SHORT);
-                mytoast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 0);
+                mytoast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 400);
                 mytoast.show();
                 new android.os.Handler().postDelayed(
                         new Runnable() {
