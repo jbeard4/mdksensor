@@ -711,7 +711,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         double average = computeAverage();
         Log.e("average",Double.toString(average));
         Log.e("temp",Double.toString(temp));
-        if(temp > (average + threshold)){
+        if(temp > (average + threshold) || temp < (average - threshold)){
 
             if(!isPuppyVisible ) {
                 isPuppyVisible = true;
