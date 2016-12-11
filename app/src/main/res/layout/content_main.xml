@@ -35,11 +35,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/card_general_info" />
-
         <include layout="@layout/card_mod_controller" />
 
-        <include layout="@layout/card_external_links" />
 
     </LinearLayout>
 </ScrollView>

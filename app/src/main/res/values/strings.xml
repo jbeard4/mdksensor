@@ -27,7 +27,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- description: [App name] -->
-    <string name="app_name">MDK Sensor</string>
+    <string name="app_name">TheraPuppy</string>
     <!-- description: [Settings menu caption] -->
     <string name="action_settings">Settings</string>
     <!-- description: [About menu caption] -->
@@ -119,13 +119,13 @@
 
     <string name="sensor_not_available">Moto Mods Sensor Card not available.</string>
     <!-- description: [Temperature caption] -->
-    <string name="sensor_data">Moto Mods Sensor</string>
+    <string name="sensor_data">Stress Level</string>
     <!-- description: [Sample value catching interval caption] -->
     <string name="sensor_interval">Interval</string>
     <!-- description: [Sample values showing on UI caption] -->
     <string name="x_axis_name">15 recent sampling</string>
     <!-- description: [Y axis label showing on UI caption] -->
-    <string name="y_axis_name">Temperature (F)</string>
+    <string name="y_axis_name">Stress</string>
     <!-- description: [Clear history button caption] -->
     <string name="clear_history">CLEAR HISTORY</string>
     <!-- description: [Toast prompt when sensor starts to catch sample value] -->
@@ -133,6 +133,6 @@
     <!-- description: [Toast prompt when sensor stop to catch sample value] -->
     <string name="sensor_stop">Sensor recording stopped.</string>
     <string name="sensor_description">The MDK Sensor Card has a temperature sensor.  This provides reading the temperature date from the sensor.</string>
-    <string name="attach_pcard">Please insert the Sensor Personality Card and attach the Reference Moto Mod.</string>
+    <string name="attach_pcard">This is your stress level as measured by the galvanic skin response sensor. Take a deep breath...</string>
     <string name="mdk_switch">Please detach the Reference Moto Mod and insert the Sensor Personality Card.</string>
 </resources>
